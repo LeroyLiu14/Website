@@ -1,15 +1,5 @@
 #------------------------------------------------------------------------
-# Rice growth rate (Gr) simulation model
-# Cultivars: TK9, TNG71, KH147
-# Study area: Wufeng, Taichung, Taiwan; Neipu, Pingtung, Taiwan
-# Common Rice Cultivation in Taiwan
 # d[0]: Stage; d[1]: Thigh; d[2]: Tlow; d[3]: Tavg
-# R2 of training/CV/testing: 0.9880, 0.9868, 0.9877
-# RMSE of training/CV/testing: 0.1207, 0.1233, 0.1226 
-# MAE of training/CV/testing: 0.0972, 0.0986, 0.0984 
-# RMSE in 1/Gr of whole life cycle: 3.1735 days
-# MAE in 1/Gr of whole life cycle: 2.6295 days
-# CC BY-NC-ND 3.0
 #------------------------------------------------------------------------
 from math import *
 def riceGrowthRateSimulationModel (d):
@@ -22,7 +12,7 @@ def riceGrowthRateSimulationModel (d):
     y = y / log(gep5Rt(pow((pow((1.0-d[3]),3.0)*floor(log(d[1]))*(pow(C4,2.0)-d[2])),4.0)))
     y = y / max(log((((C8+C7)+d[1]+(C8+d[1]+d[1]))+(C8*C5)+(d[1]*C6))),C5)
     y = y / gep5Rt(gep5Rt(pow(((floor(pow((d[1]/ceil(d[3])),2.0))+d[0])/2.0),4.0)))
-    y = y / gep3Rt(gep3Rt(((((d[2]-d[1])+(d[1]/d[2])+min(d[3],d[3]))+((C10+C11+C11)*C9))/2.0)))
+    y = y / gep3Rt(gep3Rt(((((d[2]-d[1])+(d[1]/d[2])+min(d[3],d[3]))+((C10+C11+C11)*C9)) /2.0)))
     return y
 
 def gep3Rt(x):
